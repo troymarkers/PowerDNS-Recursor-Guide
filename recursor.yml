@@ -1,0 +1,25 @@
+###############################################################################
+#  文件位置: /etc/powerdns/recursor.yml
+#
+#  设计理念:
+#    主配置仅负责分发 — 通过 include_dir 加载 recursor.d/ 下的所有拆分文件。
+#
+#  修改配置文件后无需重启 Recursor，执行 rec_control reload-yaml 即可热重载
+#
+#  文件结构:
+#    recursor.yml                     ← 本文件（入口，仅含 include_dir）
+#    recursor.d/
+#      ├── 01-incoming.yml             ← 入站连接 (listen, allow_from, TCP/UDP)
+#      ├── 02-outgoing.yml             ← 出站连接 (source_address, 超时, 限流)
+#      ├── 03-dnssec.yml               ← DNSSEC 验证 (validation, Trust Anchor, NTA)
+#      ├── 04-ecs.yml                  ← EDNS Client Subnet (CDN 就近调度)
+#      ├── 05-cache.yml                ← 包缓存 + 记录缓存
+#      ├── 06-recursor.yml             ← 递归行为核心 + 转发 + RPZ
+#      ├── 07-nod.yml                  ← NOD/UDR 新域名检测
+#      ├── 08-logging.yml              ← 日志配置
+#      └── 09-webservice.yml           ← Web 服务 / REST API
+#
+###############################################################################
+
+recursor:
+  include_dir: '/etc/powerdns/recursor.d'

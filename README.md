@@ -53,7 +53,7 @@ powerdns-recursor-manpages.md              # 收录 pdns_recursor 和 rec_contro
 sudo mkdir -p /etc/powerdns/recursor.d
 sudo cp recursor.yml /etc/powerdns/recursor.yml
 sudo cp recursor.d/*.yml /etc/powerdns/recursor.d/
-sudo chown root:pdns /etc/powerdns/recursor.yml
+sudo chown pdns:pdns /etc/powerdns/recursor.yml
 sudo chown -R pdns:pdns /etc/powerdns/recursor.d
 sudo chmod 640 /etc/powerdns/recursor.yml
 ```
